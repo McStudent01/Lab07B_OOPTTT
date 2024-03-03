@@ -17,11 +17,32 @@ public class TicTacToeGame
 
     public boolean makeMove(int row, int col)
     {
-        if (board[row][col] == ' ') {
+        if (board[row][col] == ' ')
+        {
             board[row][col] = currentPlayer;
             return true;
         }
         return false;
+    }
+
+    public boolean checkMoveResult()
+    {
+        if (checkForWin())
+        {
+            return true;
+        } else if (checkForTie())
+        {
+            return true;
+        } else
+        {
+            switchPlayer();
+            return false;
+        }
+    }
+
+    public void switchPlayer()
+    {
+        currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
     }
 
     public boolean checkForWin()
@@ -42,11 +63,6 @@ public class TicTacToeGame
             }
         }
         return true;
-    }
-
-    public void switchPlayer()
-    {
-        currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
     }
 
     private boolean checkRows()
